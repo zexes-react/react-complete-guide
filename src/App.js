@@ -16,14 +16,14 @@ const app = props => {
   const [otherState, setOtherState] = useState('some random value')
 
   const switchNameHandler = () => {
-  // console.log('Was clicked!')
-  // DON'T DO THIS: this.state.persons[0].name = 'Ezekiel'
+    // console.log('Was clicked!')
+    // DON'T DO THIS: this.state.persons[0].name = 'Ezekiel'
     setPersonsState({persons: [
       { name: 'Ezekiel', age:28 },
       { name: 'Manu', age:29 },
       { name: 'Stephanie', age:  30}
     ]})
-};
+  };
 
     return (
       <div className="App">
