@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import classes from './App.css';
 import Person from "./Person/Person";
 import './Person/Person.css'
-
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 
 class App extends Component {
@@ -26,16 +26,16 @@ class App extends Component {
 
         // const person = Object.assign({}, this.state.persons[personIndex]);
 
-        person.name= event.target.value;
+        person.name = event.target.value;
 
         const persons = [...this.state.persons];
         persons[personIndex] = person;
 
-        this.setState({persons: persons })
+        this.setState({persons: persons})
     }
 
     deletePersonHandler = (personIndex) => {
-       // const persons = this.state.persons.slice();//copying new Array
+        // const persons = this.state.persons.slice();//copying new Array
         const persons = [...this.state.persons];//copying new Array using spread
         persons.splice(personIndex, 1);
         this.setState({persons: persons});
@@ -54,12 +54,14 @@ class App extends Component {
             persons = (
                 <div>
                     {this.state.persons.map((person, index) => {
-                        return <Person
-                            click={() => this.deletePersonHandler(index)}
-                            name={person.name}
-                            age={person.age}
-                            key={person.id}
-                            changed ={(event) => this.nameChangedHandler(event, person.id)}/>
+                        // The key has to be on the outer method
+                        return <ErrorBoundary  key={person.id}>
+                            <Person
+                                click={() => this.deletePersonHandler(index)}
+                                name={person.name}
+                                age={person.age}
+                                changed={(event) => this.nameChangedHandler(event, person.id)}/>
+                        </ErrorBoundary>
                     })}
                 </div>
             )
@@ -67,25 +69,25 @@ class App extends Component {
         }
 
         let assignedClasses = [];
-        if(this.state.persons.length <= 2){
+        if (this.state.persons.length <= 2) {
             assignedClasses.push(classes.red); //classes = ['red']
         }
-        if(this.state.persons.length <= 1){
+        if (this.state.persons.length <= 1) {
             assignedClasses.push(classes.bold); //classes = ['red', 'bold']
         }
 
 
         return (
 
-                <div className={classes.App}>
-                    <h1>Hi, I'm a react App</h1>
-                    <p className={assignedClasses.join(' ')}>This is really working</p>
-                    {/*this is inefficient, use the below*/}
-                    <button className={btnClass} onClick={this.togglePersonsHandler}>Toggle Persons
-                    </button>
+            <div className={classes.App}>
+                <h1>Hi, I'm a react App</h1>
+                <p className={assignedClasses.join(' ')}>This is really working</p>
+                {/*this is inefficient, use the below*/}
+                <button className={btnClass} onClick={this.togglePersonsHandler}>Toggle Persons
+                </button>
 
-                    {persons}
-                </div>
+                {persons}
+            </div>
 
         );
         //   return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
