@@ -31,6 +31,16 @@ class App extends Component {
         console.log("[App.js] componentDidMount runs 4th ==>> You can run Http request here");
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log("[App.js] shouldComponentUpdate RUNS ON STATE CHANGE");
+        const someCondition = true;
+        return someCondition;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("[App.js] componentDidUpdate RUNS ON STATE CHANGE")
+    }
+
     nameChangedHandler = (event, id) => {
         const personIndex = this.state.persons.findIndex((p => {
             return p.id === id;
