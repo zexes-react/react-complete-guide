@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import classes from './Cockpit.css'
 
 const cockpit = (props)=> {
+    useEffect(() =>{
+        console.log('[cockpit.js] useEffect, bundles all class hooks as one, hence runs for every render cycle of cockpit');
+        //combo: componentDidMount + componentDidUpdate
+        //Http Request...
+    });
+
     let assignedClasses = [];
     let btnClass = '';
 
