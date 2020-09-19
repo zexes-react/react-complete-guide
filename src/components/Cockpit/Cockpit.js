@@ -6,7 +6,14 @@ const cockpit = (props)=> {
         console.log('[cockpit.js] useEffect, bundles all class hooks as one, hence runs for every render cycle of cockpit');
         //combo: componentDidMount + componentDidUpdate
         //Http Request...
-    });
+        setTimeout(() =>{
+            alert('Saved data from the Cloud');
+        }, 1000);
+    }, []);
+    //conditioned to run when persons change i.e the optional argument passed [props.persons],
+    // we can pass in as many dependency as required here
+    // if we want to run once, pass an empty array []
+    //note we can call use effects as many times as we need it for the changes we need
 
     let assignedClasses = [];
     let btnClass = '';
