@@ -7,6 +7,11 @@ import Cockpit from '../components/Cockpit/Cockpit'
 
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        console.log("[App.js] constructor, This runs 1st, you can initialize state here");
+    }
+
     state = {
         persons: [
             {id: 'dasc', name: 'Max', age: 28},
@@ -15,6 +20,15 @@ class App extends Component {
         ],
         otherState: 'some other value',
         showPersons: false
+    }
+
+    static getDerivedStateFromProps(props, state){
+        console.log("[App.js] getDerivedStateFromProps runs 2nd", props);
+        return state;
+    }
+
+    componentDidMount() {
+        console.log("[App.js] componentDidMount runs 4th ==>> You can run Http request here");
     }
 
     nameChangedHandler = (event, id) => {
@@ -47,6 +61,7 @@ class App extends Component {
     }
 
     render() {
+        console.log("[App.js] render -> runs 3rd");
         let persons = null;
 
         if (this.state.showPersons) {
