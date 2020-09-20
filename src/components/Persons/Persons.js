@@ -1,19 +1,21 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent {
     // static getDerivedStateFromProps(props, state){
     //     console.log('[Persons.js] getDerivedStateFromProps runs 1st on update')
     //     return state
     // }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log('[Persons.js] shouldComponentUpdate runs 2nd on update')
-        return nextProps.persons !== this.props.persons; //ensure u compare elements not pointers
-        // condition will be ran to determine this. comparing nextProps n nextState
-        //enable paint Highlighting in rendering, chrome or Edge
-    }
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     console.log('[Persons.js] shouldComponentUpdate runs 2nd on update')
+    //     return nextProps.persons !== this.props.persons ||
+    //         nextProps.changed !== this.props.changed ||
+    //         nextProps.clicked !== this.props.clicked; //ensure u compare elements not pointers
+    //     // condition will be ran to determine this. comparing nextProps n nextState
+    //     //enable paint Highlighting in rendering, chrome or Edge
+    // }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Persons.js] getSnapshotBeforeUpdate runs 3rd on update:::: ' +
