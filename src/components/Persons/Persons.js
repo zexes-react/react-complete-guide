@@ -10,7 +10,9 @@ class Persons extends Component {
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         console.log('[Persons.js] shouldComponentUpdate runs 2nd on update')
-        return true;// condition will be ran to determine this. comparing nextProps n nextState
+        return nextProps.persons !== this.props.persons; //ensure u compare elements not pointers
+        // condition will be ran to determine this. comparing nextProps n nextState
+        //enable paint Highlighting in rendering, chrome or Edge
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
