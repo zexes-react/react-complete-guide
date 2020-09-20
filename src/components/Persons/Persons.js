@@ -19,6 +19,10 @@ class Persons extends Component {
         return {message: 'snapshot!'};
     }
 
+    componentWillUnmount() {
+        console.log('[Persons.js] componentWillUnmount:: things that should run before component is unmounted ==>  clean up work' );
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('[Persons.js] componentDidUpdate runs 5th on update')
         console.log(snapshot);

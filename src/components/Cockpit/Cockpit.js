@@ -9,11 +9,20 @@ const cockpit = (props)=> {
         setTimeout(() =>{
             alert('Saved data from the Cloud');
         }, 1000);
+
+        return () => console.log('[cockpit.js] cleanup work \n runs BEFORE the main useEffect function runs, but AFTER the (first) render cycle!');
     }, []);
     //conditioned to run when persons change i.e the optional argument passed [props.persons],
     // we can pass in as many dependency as required here
     // if we want to run once, pass an empty array []
     //note we can call use effects as many times as we need it for the changes we need
+
+    useEffect((() => {
+        console.log('[cockpit.js] 2nd useEffect');
+        return (() => {
+            console.log('[cockpit.js] clean up work in 2nd useEffect'); // optional
+            });
+    }));
 
     let assignedClasses = [];
     let btnClass = '';
