@@ -24,7 +24,7 @@ class Persons extends PureComponent {
     }
 
     componentWillUnmount() {
-        console.log('[Persons.js] componentWillUnmount:: things that should run before component is unmounted ==>  clean up work' );
+        console.log('[Persons.js] componentWillUnmount:: things that should run before component is unmounted ==>  clean up work');
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -35,13 +35,16 @@ class Persons extends PureComponent {
     render() {
         console.log('[Persons.js] rendering...runs on creation render n runs 4th on Update');
         return this.props.persons.map((person, index) => {
-            return <Person
-                click={() => this.props.clicked(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.props.changed(event, person.id)}/>
-        });
+            return (
+                <Person
+                    click={() => this.props.clicked(index)}
+                    name={person.name}
+                    age={person.age}
+                    key={person.id}
+                    changed={(event) => this.props.changed(event, person.id)}
+                />
+                        );
+                    });
     }
 }
 
