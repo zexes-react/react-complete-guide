@@ -1,9 +1,12 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext} from 'react';
 import classes from './Cockpit.css';
 import AuthContext from '../../context/auth-context'
 
 const cockpit = (props)=> {
     const toggleBtnRef = useRef(null);
+    const authContext = useContext(AuthContext);
+
+    console.log(authContext.authenticated)
 
     useEffect(() =>{
         console.log('[cockpit.js] useEffect, bundles all class hooks as one, hence runs for every render cycle of cockpit');
@@ -48,9 +51,7 @@ const cockpit = (props)=> {
         {/*this is inefficient, use the below*/}
         <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>Toggle Persons
         </button>
-       <AuthContext.Consumer>
-           {(context) => <button onClick={context.login}>Log in</button>}
-       </AuthContext.Consumer>
+        <button onClick={authContext.login}>Log in</button>
     </div>
   );
 };
