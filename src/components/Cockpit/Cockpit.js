@@ -1,14 +1,14 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import classes from './Cockpit.css'
 
 const cockpit = (props)=> {
+    const toggleBtnRef = useRef(null);
+
     useEffect(() =>{
         console.log('[cockpit.js] useEffect, bundles all class hooks as one, hence runs for every render cycle of cockpit');
         //combo: componentDidMount + componentDidUpdate
         //Http Request...
-        setTimeout(() =>{
-            alert('Saved data from the Cloud');
-        }, 1000);
+        toggleBtnRef.current.click();
 
         return () => console.log('[cockpit.js] cleanup work \n runs BEFORE the main useEffect function runs, but AFTER the (first) render cycle!');
     }, []);
@@ -45,7 +45,7 @@ const cockpit = (props)=> {
         <h1>{props.title}</h1>
         <p className={assignedClasses.join(' ')}>This is really working</p>
         {/*this is inefficient, use the below*/}
-        <button className={btnClass} onClick={props.clicked}>Toggle Persons
+        <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>Toggle Persons
         </button>
     </div>
   );
